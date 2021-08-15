@@ -14,6 +14,7 @@ export class NextPartyService {
     return {
       2019: moment('2019-10-05 00:00'),
       2020: moment('2020-09-19 00:00'),
+      2021: moment('2021-10-02 00:00'),
     };
   }
 
