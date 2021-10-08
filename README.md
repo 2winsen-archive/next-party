@@ -14,6 +14,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 - `src\app\core\next-party.service.ts` contains map of custom next party dates
 - `src\app\utils\fake-date.ts` can be used to test any date (not affecting production build)
 - `src\app\app.component.ts` does console.log of app version from package.json
+- `src\app\slick-carousel\slick-carousel.component.html` carousel of images
+- `src\assets` assets
 
 ## Build and Deploy to GitHub pages
 
