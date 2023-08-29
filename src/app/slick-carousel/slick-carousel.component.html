@@ -1,6 +1,1 @@
-<div class="background-image" [style.background-image]="'url(assets/2022.webp)'"></div>
-<div class="background-image" [style.background-image]="'url(assets/2021.webp)'"></div>
-<div class="background-image" [style.background-image]="'url(assets/2020.webp)'"></div>
-<div class="background-image" [style.background-image]="'url(assets/2019.webp)'"></div>
-<div class="background-image" [style.background-image]="'url(assets/2018.webp)'"></div>
-<div class="background-image" [style.background-image]="'url(assets/2017.webp)'"></div>
+<div *ngFor="let image of images" class="background-image" [style.background-image]="'url(image)'"></div>

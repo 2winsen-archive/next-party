@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { now, parseMillisecondsLeft } from '../../utils/date-utils';
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { now, parseMillisecondsLeft } from "../../utils/date-utils";
+import { environment } from "src/environments/environment";
 
 @Component({
-  selector: 'app-next-party-countdown',
-  templateUrl: './next-party-countdown.component.html',
-  styleUrls: ['./next-party-countdown.component.scss'],
+  selector: "app-next-party-countdown",
+  templateUrl: "./next-party-countdown.component.html",
+  styleUrls: ["./next-party-countdown.component.scss"],
 })
 export class NextPartyCountdownComponent implements OnInit {
   private TICK_DURATION = 1000;
@@ -14,10 +15,11 @@ export class NextPartyCountdownComponent implements OnInit {
   seconds: string;
   minutes: string;
   hours: string;
+  isProduction = environment.production;
   @Input() end: Date;
   @Output() completed: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.onTick();
@@ -41,6 +43,6 @@ export class NextPartyCountdownComponent implements OnInit {
   }
 
   private pad(unit: number) {
-    return unit.toString().padStart(2, '0');
+    return unit.toString().padStart(2, "0");
   }
 }

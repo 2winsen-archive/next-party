@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import * as moment from 'moment';
 import { NextPartyService } from './next-party.service';
-import MomentsMap from '../types/MomentsMap';
+import { MomentsMap } from '../types/types';
 
 class NextPartyMockService extends NextPartyService {
   protected getCustomDatesMap(): MomentsMap {

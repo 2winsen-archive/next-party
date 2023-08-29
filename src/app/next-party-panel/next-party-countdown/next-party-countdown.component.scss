@@ -18,3 +18,8 @@
 :host .unit-container p.unit {
     margin-bottom: 5px;
 }
+
+:host .fake-date-notice {
+    color: crimson;
+    align-self: center;
+}

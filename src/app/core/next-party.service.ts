@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
 import * as moment from 'moment';
-import MomentsMap from '../types/MomentsMap';
+import * as configJson from '../../config.json';
+import { Config, MomentsMap } from '../types/types';
 
 @Injectable()
 export class NextPartyService {
   private static readonly ADD_TO_CALENDAR_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
-  constructor() {
-  }
+  constructor() {}
 
   protected getCustomDatesMap(): MomentsMap {
-    return {
-      2019: moment('2019-10-05 00:00'),
-      2020: moment('2020-09-19 00:00'),
-      2021: moment('2021-10-02 00:00'),
-    };
+    const config: Config = (configJson as any).default;
+    return Object.entries(config.dates).reduce((acc, [key, value]) => {
+      return { ...acc, [key]: moment(value) };
+    }, {});
   }
 
   public getNextDate(momentNow: Moment): Date {
@@ -41,7 +40,9 @@ export class NextPartyService {
 
   private calculateNextPartyDate(momentNow: Moment): Moment {
     const thisYearsParty = this.calculatePartyDateFrom(momentNow);
-    const partyIsNextYear = !this.isToday(momentNow, thisYearsParty) && momentNow.isAfter(thisYearsParty);
+    const partyIsNextYear =
+      !this.isToday(momentNow, thisYearsParty) &&
+      momentNow.isAfter(thisYearsParty);
     if (partyIsNextYear) {
       const nextYear = momentNow.clone().add(1, 'year');
       return this.calculatePartyDateFrom(nextYear);

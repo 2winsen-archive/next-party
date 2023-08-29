@@ -1,16 +1,28 @@
-import { Component, AfterViewInit, ElementRef, NgZone } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ElementRef,
+  NgZone,
+  OnInit,
+} from '@angular/core';
 import * as $ from 'jquery';
 import 'slick-carousel';
+import * as configJson from '../../config.json';
+import { Config } from '../types/types';
 
 @Component({
   selector: 'app-slick-carousel',
   templateUrl: './slick-carousel.component.html',
   styleUrls: ['./slick-carousel.component.scss'],
 })
-export class SlickCarouselComponent implements AfterViewInit {
+export class SlickCarouselComponent implements AfterViewInit, OnInit {
   $carousel: JQuery;
+  images: string[];
 
-  constructor(private el: ElementRef, private zone: NgZone) {
+  constructor(private el: ElementRef, private zone: NgZone) {}
+  ngOnInit(): void {
+    const config: Config = (configJson as any).default;
+    this.images = config.images;
   }
 
   ngAfterViewInit() {
@@ -18,7 +30,7 @@ export class SlickCarouselComponent implements AfterViewInit {
     this.zone.runOutsideAngular(() => {
       this.$carousel = $el.slick({
         dots: true,
-        rows: 0
+        rows: 0,
       });
     });
   }
