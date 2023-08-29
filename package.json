@@ -1,6 +1,6 @@
 {
   "name": "next-party",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "scripts": {
     "ng": "ng",
     "start": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve",
