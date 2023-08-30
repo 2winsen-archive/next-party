@@ -1,10 +1,10 @@
-import { fakeDate } from "./fake-date";
-import { environment } from "src/environments/environment";
-import { DateTimeLeft } from "../types/types";
+import { fakeDate } from './fake-date';
+import { environment } from 'src/environments/environment';
+import { DateTimeLeft } from '../types/types';
 
 export const now = () => {
   if (!environment.production) {
-    return fakeDate(new Date().toDateString());
+    return fakeDate(new Date().valueOf());
   }
   return new Date();
 };
@@ -13,15 +13,15 @@ export const parseMillisecondsLeft = (
   millisecondsLeft: number
 ): DateTimeLeft => {
   const units = [
-    { name: "days", milliseconds: 1000 * 60 * 60 * 24 },
-    { name: "hours", milliseconds: 1000 * 60 * 60 },
-    { name: "minutes", milliseconds: 1000 * 60 },
-    { name: "seconds", milliseconds: 1000 },
+    { name: 'days', milliseconds: 1000 * 60 * 60 * 24 },
+    { name: 'hours', milliseconds: 1000 * 60 * 60 },
+    { name: 'minutes', milliseconds: 1000 * 60 },
+    { name: 'seconds', milliseconds: 1000 },
   ];
   const unitsLeft = new DateTimeLeft();
   units.forEach((unit) => {
     unitsLeft[unit.name] = millisecondsLeft / unit.milliseconds;
-    if (unit.name === "seconds") {
+    if (unit.name === 'seconds') {
       unitsLeft[unit.name] = Math.ceil(unitsLeft[unit.name]);
     } else {
       unitsLeft[unit.name] = Math.floor(unitsLeft[unit.name]);
