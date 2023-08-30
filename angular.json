@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["jquery", "moment"],
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -121,5 +122,7 @@
       }
     }
   },
-  "defaultProject": "next-party"
+  "cli": {
+    "analytics": false
+  }
 }
