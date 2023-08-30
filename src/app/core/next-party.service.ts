@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
 import * as moment from 'moment';
-import * as configJson from '../../config.json';
-import { Config, MomentsMap } from '../types/types';
+import configJson from '../../config.json';
+import { MomentsMap } from '../types/types';
 
 @Injectable()
 export class NextPartyService {
@@ -11,8 +11,7 @@ export class NextPartyService {
   constructor() {}
 
   protected getCustomDatesMap(): MomentsMap {
-    const config: Config = (configJson as any).default;
-    return Object.entries(config.dates).reduce((acc, [key, value]) => {
+    return Object.entries(configJson.dates).reduce((acc, [key, value]) => {
       return { ...acc, [key]: moment(value) };
     }, {});
   }

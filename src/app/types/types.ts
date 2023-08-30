@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from 'moment';
 
 export class DateTimeLeft {
   days: number;
@@ -16,11 +16,4 @@ export class DateTimeLeft {
 
 export interface MomentsMap {
   [value: number]: Moment;
-}
-
-export interface Config {
-  dates: {
-    [value: number]: string;
-  };
-  images: string[];
 }
