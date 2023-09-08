@@ -12,6 +12,8 @@ export class ConfigService {
   constructor(private http: HttpClient) {}
 
   getConfig(): Promise<Config> {
-    return this.http.get<Config>(CONFIG_URL).toPromise();
+    return this.http
+      .get<Config>(`${CONFIG_URL}?date=${Date.now()}`)
+      .toPromise();
   }
 }
