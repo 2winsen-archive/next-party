@@ -17,3 +17,10 @@ export class DateTimeLeft {
 export interface MomentsMap {
   [value: number]: Moment;
 }
+
+export interface Config {
+  dates: {
+    [value: number]: string;
+  };
+  images: string[];
+}

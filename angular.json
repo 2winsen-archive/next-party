@@ -25,7 +25,7 @@
             "tsConfig": "tsconfig.app.json",
             "buildOptimizer": true,
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets", "src/config.json"],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.scss",
@@ -64,6 +64,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -75,8 +83,12 @@
           "configurations": {
             "production": {
               "browserTarget": "next-party:build:production"
+            },
+            "development": {
+              "browserTarget": "next-party:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

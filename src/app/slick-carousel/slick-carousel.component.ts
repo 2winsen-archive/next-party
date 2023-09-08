@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import * as $ from 'jquery';
 import 'slick-carousel';
-import configJson from '../../config.json';
+import { ConfigService } from '../core/config.service';
 
 @Component({
   selector: 'app-slick-carousel',
@@ -18,9 +18,14 @@ export class SlickCarouselComponent implements AfterViewInit, OnInit {
   $carousel: JQuery;
   images: string[];
 
-  constructor(private el: ElementRef, private zone: NgZone) {}
+  constructor(
+    private el: ElementRef,
+    private zone: NgZone,
+    private configService: ConfigService
+  ) {}
   ngOnInit(): void {
-    this.images = configJson.images;
+    const config = this.configService.cachedConfig;
+    this.images = config.images;
   }
 
   ngAfterViewInit() {

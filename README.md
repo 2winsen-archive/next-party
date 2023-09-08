@@ -29,4 +29,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 1. Commit changes
 1. Push all your changes + docs directory
 
-## N.B. to change only image + date use `src/config.json` and upload image to `docs/assets` and `src/assets`
+## N.B. to change only image and next party date adjust `config.json` and upload image to `docs/assets` and `src/assets`

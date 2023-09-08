@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { NextPartyPanelComponent } from './next-party-panel.component';
 import { ComponentFixture } from '@angular/core/testing';
 import { Pipe, PipeTransform, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ConfigService } from '../core/config.service';
 
 @Pipe({ name: 'latvianDate' })
 class LatvianDateMockPipe implements PipeTransform {
@@ -14,15 +15,22 @@ describe('NextPartyPanelComponent', () => {
   let fixture: ComponentFixture<NextPartyPanelComponent>;
   let component: NextPartyPanelComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+    const mockConfig = {
+      dates: {
+        '2023': '2023-10-21 00:00',
+      },
+      images: ['assets/2023.webp'],
+    };
+    const configServiceMock = {
+      cachedConfig: mockConfig,
+    };
     TestBed.configureTestingModule({
-      declarations: [
-        NextPartyPanelComponent,
-        LatvianDateMockPipe,
-      ],
+      declarations: [NextPartyPanelComponent, LatvianDateMockPipe],
+      providers: [{ provide: ConfigService, useValue: configServiceMock }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NextPartyPanelComponent);
@@ -30,11 +38,13 @@ describe('NextPartyPanelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should show today\'s party label', () => {
+  it("should show today's party label", () => {
     component.isToday = true;
     fixture.detectChanges();
     const el = fixture.nativeElement;
-    expect(el.querySelector('.next-party-panel-today__label').textContent).toEqual('ŠODIEN!!!');
+    expect(
+      el.querySelector('.next-party-panel-today__label').textContent
+    ).toEqual('ŠODIEN!!!');
     expect(el.querySelector('.next-party-panel__date')).toEqual(null);
     expect(el.querySelector('app-next-party-countdown')).toEqual(null);
   });

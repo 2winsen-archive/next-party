@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -8,8 +8,17 @@ import { LatvianDatePipe } from './core/latvian-date.pipe';
 import { NextPartyPanelComponent } from './next-party-panel/next-party-panel.component';
 import { SlickCarouselComponent } from './slick-carousel/slick-carousel.component';
 import { AddToCalendarComponent } from './next-party-panel/add-to-calendar/add-to-calendar.component';
+import { ConfigService } from './core/config.service';
+import { HttpClientModule } from '@angular/common/http';
 
+function initializeAppFactory(configService: ConfigService) {
+  return async () => {
+    const config = await configService.getConfig();
+    configService.cachedConfig = config;
+  };
+}
 @NgModule({
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
   declarations: [
     AppComponent,
     NextPartyCountdownComponent,
@@ -18,11 +27,14 @@ import { AddToCalendarComponent } from './next-party-panel/add-to-calendar/add-t
     SlickCarouselComponent,
     AddToCalendarComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppFactory,
+      deps: [ConfigService],
+      multi: true,
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

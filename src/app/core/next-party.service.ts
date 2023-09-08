@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
 import * as moment from 'moment';
-import configJson from '../../config.json';
 import { MomentsMap } from '../types/types';
+import { ConfigService } from './config.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class NextPartyService {
   private static readonly ADD_TO_CALENDAR_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
-  constructor() {}
+  constructor(private configService: ConfigService) {}
 
   protected getCustomDatesMap(): MomentsMap {
-    return Object.entries(configJson.dates).reduce((acc, [key, value]) => {
+    const config = this.configService.cachedConfig;
+    return Object.entries(config.dates).reduce((acc, [key, value]) => {
       return { ...acc, [key]: moment(value) };
     }, {});
   }

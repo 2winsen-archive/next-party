@@ -1,21 +1,27 @@
 import * as moment from 'moment';
 import { NextPartyService } from './next-party.service';
 import { MomentsMap } from '../types/types';
-
-class NextPartyMockService extends NextPartyService {
-  protected getCustomDatesMap(): MomentsMap {
-    return {
-      2000: moment('2000-10-05 00:00'),
-      2001: moment('2001-10-05 00:00'),
-    };
-  }
-}
+import { ConfigService } from './config.service';
+import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('NextPartyService', () => {
   let service: NextPartyService;
+  let configService: ConfigService;
 
   beforeEach(() => {
-    service = new NextPartyMockService();
+    const mockConfig = {
+      dates: {
+        2000: '2000-10-05 00:00',
+        2001: '2001-10-05 00:00',
+      },
+      images: ['assets/2023.webp'],
+    };
+    const httpClientMock = {};
+    configService = new ConfigService(httpClientMock as unknown as HttpClient);
+    configService.cachedConfig = mockConfig;
+    service = new NextPartyService(configService);
   });
 
   describe('NextPartyService.getNextDate', () => {
