@@ -1,4 +1,4 @@
-@import "variables.scss";
+@use 'variables' as vars;
 
 .large {
   font-size: 18px;
@@ -14,15 +14,15 @@
 
 @keyframes color-change {
   0% {
-    color: $third-color;
+    color: vars.$third-color;
   }
 
   50% {
-    color: $second-color;
+    color: vars.$second-color;
   }
 
   100% {
-    color: $third-color;
+    color: vars.$third-color;
   }
 }
 

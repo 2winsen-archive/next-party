@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NextPartyService } from 'src/app/core/next-party.service';
 
 @Component({
-  selector: 'app-add-to-calendar',
-  templateUrl: './add-to-calendar.component.html',
-  styleUrls: ['./add-to-calendar.component.scss'],
-  providers: [NextPartyService]
+    selector: 'app-add-to-calendar',
+    templateUrl: './add-to-calendar.component.html',
+    styleUrls: ['./add-to-calendar.component.scss'],
+    providers: [NextPartyService],
+    standalone: false
 })
 export class AddToCalendarComponent implements OnInit {
   @Input() nextParty: Date;

@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@use "../../variables.scss" as vars;
 
 :host.slick-dotted.slick-slider {
   margin-bottom: 0;
@@ -40,16 +40,16 @@
 }
 
 :host::ng-deep .slick-dots li[role="presentation"] button::before {
-  color: $second-color;
+  color: vars.$second-color;
   opacity: 0.75;
 }
 
 :host::ng-deep .slick-dots li[role="presentation"].slick-active button::before {
-  color: $main-color;
+  color: vars.$main-color;
 }
 
 :host .slick-carousel-image-label {
-    color: $main-color;
+    color: vars.$main-color;
     font-size: 24px;
     padding: 0px 20px;
     background-color: #fff6;

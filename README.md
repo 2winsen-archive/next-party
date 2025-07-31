@@ -10,7 +10,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app 
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Tips
 
@@ -24,9 +24,12 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 1. Change version in `package.json`
 1. Optimize assets - tinypng -> webp
-1. Run `npm run test`
+1. Run `npm test`
 1. Run `npm run build-prod`
 1. Commit changes
 1. Push all your changes + docs directory
 
-## N.B. to change only image and next party date adjust `config.json` and upload image to `docs/assets` and `src/assets`
+## Update ONLY image and next party date
+
+1. adjust `config.json`
+1. upload image to `docs/assets` and `src/assets`

@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NextPartyService } from './../core/next-party.service';
-import * as moment from 'moment';
+import moment from 'moment';
 import { now } from '../utils/date-utils';
 
-
 @Component({
-  selector: 'app-next-party-panel',
-  templateUrl: './next-party-panel.component.html',
-  styleUrls: ['./next-party-panel.component.scss'],
-  providers: [NextPartyService]
+    selector: 'app-next-party-panel',
+    templateUrl: './next-party-panel.component.html',
+    styleUrls: ['./next-party-panel.component.scss'],
+    providers: [NextPartyService],
+    standalone: false
 })
 export class NextPartyPanelComponent implements OnInit {
   isToday: boolean;
   nextParty: Date;
 
-  constructor(private nextPartyService: NextPartyService) { }
+  constructor(private nextPartyService: NextPartyService) {}
 
   ngOnInit(): void {
     this.nextParty = this.nextPartyService.getNextDate(moment());

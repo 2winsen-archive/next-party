@@ -3,9 +3,10 @@ import { now, parseMillisecondsLeft } from "../../utils/date-utils";
 import { environment } from "src/environments/environment";
 
 @Component({
-  selector: "app-next-party-countdown",
-  templateUrl: "./next-party-countdown.component.html",
-  styleUrls: ["./next-party-countdown.component.scss"],
+    selector: "app-next-party-countdown",
+    templateUrl: "./next-party-countdown.component.html",
+    styleUrls: ["./next-party-countdown.component.scss"],
+    standalone: false
 })
 export class NextPartyCountdownComponent implements OnInit {
   private TICK_DURATION = 1000;

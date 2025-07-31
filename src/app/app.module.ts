@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ import { NextPartyPanelComponent } from './next-party-panel/next-party-panel.com
 import { SlickCarouselComponent } from './slick-carousel/slick-carousel.component';
 import { AddToCalendarComponent } from './next-party-panel/add-to-calendar/add-to-calendar.component';
 import { ConfigService } from './core/config.service';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ImageNamePipe } from './slick-carousel/image-name.pipe';
 
 function initializeAppFactory(configService: ConfigService) {
@@ -18,25 +18,20 @@ function initializeAppFactory(configService: ConfigService) {
     configService.cachedConfig = config;
   };
 }
-@NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
-  declarations: [
-    AppComponent,
-    NextPartyCountdownComponent,
-    LatvianDatePipe,
-    ImageNamePipe,
-    NextPartyPanelComponent,
-    SlickCarouselComponent,
-    AddToCalendarComponent,
-  ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeAppFactory,
-      deps: [ConfigService],
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NextPartyCountdownComponent,
+        LatvianDatePipe,
+        ImageNamePipe,
+        NextPartyPanelComponent,
+        SlickCarouselComponent,
+        AddToCalendarComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule, BrowserAnimationsModule], providers: [
+        provideAppInitializer(() => {
+        const initializerFn = (initializeAppFactory)(inject(ConfigService));
+        return initializerFn();
+      }),
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

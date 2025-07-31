@@ -1,10 +1,13 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { NextPartyPanelComponent } from './next-party-panel.component';
 import { ComponentFixture } from '@angular/core/testing';
 import { Pipe, PipeTransform, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ConfigService } from '../core/config.service';
 
-@Pipe({ name: 'latvianDate' })
+@Pipe({
+    name: 'latvianDate',
+    standalone: false
+})
 class LatvianDateMockPipe implements PipeTransform {
   transform(value: Date) {
     return value;

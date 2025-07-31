@@ -1,7 +1,7 @@
-@import "../../variables.scss";
+@use "../../variables.scss" as vars;
 
 :host {
-    color: $main-font-color;
+    color: vars.$main-font-color;
     text-align: center;
     padding: 20px;
     display: block;

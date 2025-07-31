@@ -1,14 +1,11 @@
 <div class="next-party-panel__header large">Nākamā tikšanās notiks</div>
-<ng-container *ngIf="isToday; then label; else countdown">
-</ng-container>
-<ng-template #label>
-    <div class="next-party-panel-today__label extra-large with-color-change">ŠODIEN!!!</div>
-</ng-template>
-<ng-template #countdown>
-    <div class="atc-container">
-        <app-add-to-calendar [nextParty]="nextParty">
-        </app-add-to-calendar>
-    </div>
-    <app-next-party-countdown [end]="nextParty" (completed)="onCompleted($event)">
-    </app-next-party-countdown>
-</ng-template>
+@if (isToday) {
+  <div class="next-party-panel-today__label extra-large with-color-change">ŠODIEN!!!</div>
+} @else {
+  <div class="atc-container">
+    <app-add-to-calendar [nextParty]="nextParty">
+    </app-add-to-calendar>
+  </div>
+  <app-next-party-countdown [end]="nextParty" (completed)="onCompleted($event)">
+  </app-next-party-countdown>
+}

@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@use "../variables.scss" as vars;
 
 :host {
   height: 100%;
@@ -11,7 +11,7 @@
 }
 
 :host footer {
-  background-color: $main-color;
+  background-color: vars.$main-color;
   flex: 1;
 }
 

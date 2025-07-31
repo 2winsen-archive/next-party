@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MomentsMap } from '../types/types';
 import { ConfigService } from './config.service';
 

@@ -5,14 +5,15 @@ import {
   NgZone,
   OnInit,
 } from '@angular/core';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import 'slick-carousel';
 import { ConfigService } from '../core/config.service';
 
 @Component({
-  selector: 'app-slick-carousel',
-  templateUrl: './slick-carousel.component.html',
-  styleUrls: ['./slick-carousel.component.scss'],
+    selector: 'app-slick-carousel',
+    templateUrl: './slick-carousel.component.html',
+    styleUrls: ['./slick-carousel.component.scss'],
+    standalone: false
 })
 export class SlickCarouselComponent implements AfterViewInit, OnInit {
   $carousel: JQuery;

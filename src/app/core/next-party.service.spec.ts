@@ -1,9 +1,6 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { NextPartyService } from './next-party.service';
-import { MomentsMap } from '../types/types';
 import { ConfigService } from './config.service';
-import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 describe('NextPartyService', () => {

@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'imageName' })
+@Pipe({
+    name: 'imageName',
+    standalone: false
+})
 export class ImageNamePipe implements PipeTransform {
   transform(value: string): string {
     const match = value.match(/(\d{4})/);
