@@ -47,3 +47,16 @@
 :host::ng-deep .slick-dots li[role="presentation"].slick-active button::before {
   color: $main-color;
 }
+
+:host .slick-carousel-image-label {
+    color: $main-color;
+    font-size: 24px;
+    padding: 0px 20px;
+    background-color: #fff6;
+    border-radius: 5px;
+    text-shadow:
+    -1px -1px 0 #ddd,  
+     1px -1px 0 #ddd,
+    -1px  1px 0 #ddd,
+     1px  1px 0 #ddd;
+}

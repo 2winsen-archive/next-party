@@ -10,6 +10,7 @@ import { SlickCarouselComponent } from './slick-carousel/slick-carousel.componen
 import { AddToCalendarComponent } from './next-party-panel/add-to-calendar/add-to-calendar.component';
 import { ConfigService } from './core/config.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ImageNamePipe } from './slick-carousel/image-name.pipe';
 
 function initializeAppFactory(configService: ConfigService) {
   return async () => {
@@ -23,6 +24,7 @@ function initializeAppFactory(configService: ConfigService) {
     AppComponent,
     NextPartyCountdownComponent,
     LatvianDatePipe,
+    ImageNamePipe,
     NextPartyPanelComponent,
     SlickCarouselComponent,
     AddToCalendarComponent,
