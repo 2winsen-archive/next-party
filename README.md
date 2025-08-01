@@ -26,6 +26,10 @@ Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github
 1. Optimize assets - tinypng -> webp
 1. Run `npm test`
 1. Run `npm run build-prod`
+   - **TO TEST BUILD LOCALLY** run `npm run update-docs-local`
+   - Cd to `docs-local`
+   - Run `npx http-server`
+   - Navigate to `http://localhost:8080/next-party`
 1. Commit changes
 1. Push all your changes + docs directory
 
