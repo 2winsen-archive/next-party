@@ -9,8 +9,12 @@ import { NextPartyPanelComponent } from './next-party-panel/next-party-panel.com
 import { SlickCarouselComponent } from './slick-carousel/slick-carousel.component';
 import { AddToCalendarComponent } from './next-party-panel/add-to-calendar/add-to-calendar.component';
 import { ConfigService } from './core/config.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ImageNamePipe } from './slick-carousel/image-name.pipe';
+import { FireworksComponent } from './fireworks/fireworks.component';
 
 function initializeAppFactory(configService: ConfigService) {
   return async () => {
@@ -18,20 +22,25 @@ function initializeAppFactory(configService: ConfigService) {
     configService.cachedConfig = config;
   };
 }
-@NgModule({ declarations: [
-        AppComponent,
-        NextPartyCountdownComponent,
-        LatvianDatePipe,
-        ImageNamePipe,
-        NextPartyPanelComponent,
-        SlickCarouselComponent,
-        AddToCalendarComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule, BrowserAnimationsModule], providers: [
-        provideAppInitializer(() => {
-        const initializerFn = (initializeAppFactory)(inject(ConfigService));
-        return initializerFn();
-      }),
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    NextPartyCountdownComponent,
+    LatvianDatePipe,
+    ImageNamePipe,
+    NextPartyPanelComponent,
+    SlickCarouselComponent,
+    AddToCalendarComponent,
+    FireworksComponent,
+  ],
+  bootstrap: [AppComponent],
+  imports: [BrowserModule, BrowserAnimationsModule],
+  providers: [
+    provideAppInitializer(() => {
+      const initializerFn = initializeAppFactory(inject(ConfigService));
+      return initializerFn();
+    }),
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

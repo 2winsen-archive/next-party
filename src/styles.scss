@@ -1,5 +1,9 @@
 @use 'variables' as vars;
 
+html {
+  overflow: hidden;
+}
+
 .large {
   font-size: 18px;
 }
@@ -8,22 +12,34 @@
   font-size: 50px;
 }
 
-.with-color-change {
-  animation: color-change 1s infinite;
+.celebrate-text {
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    #ff4e50,
+    #f9d423,
+    #24c6dc,
+    #514a9d,
+    #ff4e50
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 6s ease infinite, pop 1.5s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@keyframes color-change {
-  0% {
-    color: vars.$third-color;
-  }
+/* Gradient shimmer effect */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  50% {
-    color: vars.$second-color;
-  }
-
-  100% {
-    color: vars.$third-color;
-  }
+/* Bouncy popping effect */
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2) rotate(3deg); }
 }
 
 @media only screen and (min-width: 1024px) {

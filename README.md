@@ -15,7 +15,7 @@ Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github
 ## Tips
 
 - `src/config.json` contains map of custom next party dates and image paths
-- `src\app\utils\date-utils.ts function now()` can be adjusted to test any date as current date (usage: `return fakeDate('2025-08-24');`)
+- `src\app\utils\date-utils.ts function now()` can be adjusted to test any date as current date (usage: `return fakeDate('2025-08-22 23:59:50.000');`)
 - `src\app\app.component.ts` does console.log of app version from package.json
 - `src\app\slick-carousel\slick-carousel.component.html` carousel of images
 - `src\assets` assets
