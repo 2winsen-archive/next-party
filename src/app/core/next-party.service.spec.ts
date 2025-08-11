@@ -9,10 +9,7 @@ describe('NextPartyService', () => {
 
   beforeEach(() => {
     const mockConfig = {
-      dates: {
-        2000: '2000-10-05 00:00',
-        2001: '2001-10-05 00:00',
-      },
+      dates: ['2000-10-05 00:00', '2001-10-05 00:00'],
       images: ['assets/2023.webp'],
     };
     const httpClientMock = {};
@@ -78,13 +75,13 @@ describe('NextPartyService', () => {
       expect(service.getNextDate(today)).toEqual(nextParty.toDate());
     });
 
-    it('should find custom next party date - next year', () => {
+    it('should find custom next party date - next year (1)', () => {
       const today = moment('1999-12-25');
       const nextParty = moment('2000-10-05');
       expect(service.getNextDate(today)).toEqual(nextParty.toDate());
     });
 
-    it('should find custom next party date - next year', () => {
+    it('should find custom next party date - next year (2)', () => {
       const today = moment('2001-10-06');
       const nextParty = moment('2002-09-14');
       expect(service.getNextDate(today)).toEqual(nextParty.toDate());
@@ -93,6 +90,22 @@ describe('NextPartyService', () => {
     it('should find custom next party date - next year custom date', () => {
       const today = moment('2000-10-06');
       const nextParty = moment('2001-10-05');
+      expect(service.getNextDate(today)).toEqual(nextParty.toDate());
+    });
+
+    it('should find custom next party date - when 2 future next party dates are set and today is first of them', () => {
+      const mockConfig = {
+        dates: ['2025-08-23 00:00', '2025-11-18 00:00'],
+        images: ['assets/2023.webp'],
+      };
+      const httpClientMock = {};
+      configService = new ConfigService(
+        httpClientMock as unknown as HttpClient
+      );
+      configService.cachedConfig = mockConfig;
+      service = new NextPartyService(configService);
+      const today = moment('2025-08-23 00:00');
+      const nextParty = moment('2025-08-23 00:00');
       expect(service.getNextDate(today)).toEqual(nextParty.toDate());
     });
   });

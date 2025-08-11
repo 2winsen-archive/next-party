@@ -4,11 +4,11 @@ import moment from 'moment';
 import { now } from '../utils/date-utils';
 
 @Component({
-    selector: 'app-next-party-panel',
-    templateUrl: './next-party-panel.component.html',
-    styleUrls: ['./next-party-panel.component.scss'],
-    providers: [NextPartyService],
-    standalone: false
+  selector: 'app-next-party-panel',
+  templateUrl: './next-party-panel.component.html',
+  styleUrls: ['./next-party-panel.component.scss'],
+  providers: [NextPartyService],
+  standalone: false,
 })
 export class NextPartyPanelComponent implements OnInit {
   isToday: boolean;
@@ -17,9 +17,10 @@ export class NextPartyPanelComponent implements OnInit {
   constructor(private nextPartyService: NextPartyService) {}
 
   ngOnInit(): void {
-    this.nextParty = this.nextPartyService.getNextDate(moment());
+    const momentNow = moment(now());
+    this.nextParty = this.nextPartyService.getNextDate(momentNow);
     this.isToday = this.nextPartyService.isToday(
-      moment(now()),
+      momentNow,
       moment(this.nextParty)
     );
   }

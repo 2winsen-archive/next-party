@@ -5,8 +5,8 @@ import { Pipe, PipeTransform, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ConfigService } from '../core/config.service';
 
 @Pipe({
-    name: 'latvianDate',
-    standalone: false
+  name: 'latvianDate',
+  standalone: false,
 })
 class LatvianDateMockPipe implements PipeTransform {
   transform(value: Date) {
@@ -20,9 +20,7 @@ describe('NextPartyPanelComponent', () => {
 
   beforeEach(() => {
     const mockConfig = {
-      dates: {
-        '2023': '2023-10-21 00:00',
-      },
+      dates: ['2023-10-21 00:00'],
       images: ['assets/2023.webp'],
     };
     const configServiceMock = {

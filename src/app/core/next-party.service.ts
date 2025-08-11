@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
 import moment from 'moment';
-import { MomentsMap } from '../types/types';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -12,11 +11,9 @@ export class NextPartyService {
 
   constructor(private configService: ConfigService) {}
 
-  protected getCustomDatesMap(): MomentsMap {
+  protected getCustomDatesMap(): Moment[] {
     const config = this.configService.cachedConfig;
-    return Object.entries(config.dates).reduce((acc, [key, value]) => {
-      return { ...acc, [key]: moment(value) };
-    }, {});
+    return config.dates.map((x) => moment(x));
   }
 
   public getNextDate(momentNow: Moment): Date {
@@ -36,7 +33,8 @@ export class NextPartyService {
 
   private calculatePartyDateFrom(momentNow: Moment): Moment {
     return this.tryToOverrideWithCustomDate(
-      this.getSeptember2ndSaturday(momentNow)
+      this.getSeptember2ndSaturday(momentNow),
+      momentNow
     );
   }
 
@@ -52,9 +50,25 @@ export class NextPartyService {
     return thisYearsParty;
   }
 
-  private tryToOverrideWithCustomDate(nextPartyDate: Moment): Moment {
-    const customDate = this.getCustomDatesMap()[nextPartyDate.year()];
-    return customDate || nextPartyDate;
+  private tryToOverrideWithCustomDate(
+    generatedNextPartyDate: Moment,
+    momentNow: Moment
+  ): Moment {
+    const futureCustomDates = this.getCustomDatesMap().filter((m) =>
+      m.isSameOrAfter(momentNow)
+    );
+    // There are hardcoded valid custom dates
+    if (futureCustomDates.length) {
+      return futureCustomDates.reduce((acc, customDate) => {
+        // From all future custom dates find closest one to now
+        if (customDate.diff(momentNow) < acc.diff(momentNow)) {
+          return customDate;
+        }
+        return acc;
+      });
+    }
+    // No hardcoded valid custom dates
+    return generatedNextPartyDate;
   }
 
   public isToday(momentNow: Moment, nextParty: Moment): boolean {
