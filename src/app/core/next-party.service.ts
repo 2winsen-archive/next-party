@@ -54,8 +54,8 @@ export class NextPartyService {
     generatedNextPartyDate: Moment,
     momentNow: Moment
   ): Moment {
-    const futureCustomDates = this.getCustomDatesMap().filter((m) =>
-      m.isSameOrAfter(momentNow)
+    const futureCustomDates = this.getCustomDatesMap().filter(
+      (m) => this.isToday(momentNow, m) || m.isAfter(momentNow)
     );
     // There are hardcoded valid custom dates
     if (futureCustomDates.length) {
