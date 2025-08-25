@@ -33,7 +33,6 @@ Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github
 1. Commit changes
 1. Push all your changes + docs directory
 
-## Update ONLY image and/or next party date
+## Update ONLY next party date
 
 - adjust `config.json`
-- upload image to `docs/assets` and `src/assets`
